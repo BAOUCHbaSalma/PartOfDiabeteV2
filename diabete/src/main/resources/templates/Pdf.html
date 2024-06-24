@@ -4,33 +4,93 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+
+
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            margin-top: 30px;
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+        }
+
+        .table-wrapper table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        .table-wrapper th,
+        .table-wrapper td {
+            border-bottom: 1px solid #ddd;
+        }
+
+        .table-wrapper th {
+            background-color: #5d5f62;
+            color: #fff;
+            text-align: center;
+        }
+
+        .btn-export-pdf {
+            background-color: #00ADEF;
+            color: #fff;
+            text-align: center;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn-export-pdf:hover {
+            background-color: #ED0E64;
+        }
+
+    </style>
 </head>
-<body class="piece">
-<h2>Valeur glycemies</h2>
-<table border="1" >
-    <thead>
-    <tr>
-        <th>ID</th>
-        <th>Valeur Glycemie</th>
-        <th>Date</th>
-        <th>Heure</th>
-        <th>Commentaire</th>
-        <th>ID Diabétiques</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="glycemie : ${Glycemies}">
-        <td th:text="${glycemie.idGlycemie}"></td>
-        <td class="glycemie-value" th:text="${glycemie.valeurGlycemie}"></td>
-        <td class="glycemie-date" th:text="${glycemie.Date}"></td>
-        <td th:text="${glycemie.Heure}"></td>
-        <td th:text="${glycemie.Commentaire}"></td>
-        <td th:text="${glycemie.diabetiques.idDiabetiques}"></td>
-    </tr>
-    </tbody>
-</table>
-<button onclick="generatePDF()">pdf exporte</button>
+
+<body>
+    <div class="container">
+        <div class="table-wrapper">
+            <h2>Valeur glycémies</h2>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Valeur Glycémie</th>
+                    <th>Date</th>
+                    <th>Heure</th>
+                    <th>Commentaire</th>
+                    <th>ID Diabétiques</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="glycemie : ${Glycemies}">
+                    <td th:text="${glycemie.idGlycemie}"></td>
+                    <td class="glycemie-value" th:text="${glycemie.valeurGlycemie}"></td>
+                    <td class="glycemie-date" th:text="${glycemie.Date}"></td>
+                    <td th:text="${glycemie.Heure}"></td>
+                    <td th:text="${glycemie.Commentaire}"></td>
+                    <td th:text="${glycemie.diabetiques.idDiabetiques}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+    </div>
+    <button class="btn-export-pdf" onclick="generatePDF()">Exporter en PDF</button>
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="/Script.js"></script>
 </body>
+
 </html>

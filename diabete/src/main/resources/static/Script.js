@@ -1,5 +1,5 @@
 function generatePDF() {
-    const element = document.querySelector('.piece');
+    const element = document.querySelector('.container');
     html2pdf().from(element).save();
 }
 

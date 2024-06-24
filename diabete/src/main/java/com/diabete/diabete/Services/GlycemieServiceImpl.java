@@ -5,7 +5,9 @@ import com.diabete.diabete.Repository.GlycemieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class GlycemieServiceImpl implements GlycemieService{
@@ -27,9 +29,14 @@ public class GlycemieServiceImpl implements GlycemieService{
     public ArrayList<Glycemie> searchByMonth(Integer month) {
         return glycemieRepository.findByMonth(month);
     }
+    @Override
+    public ArrayList<Glycemie> searchByWeek(LocalDate startDate,LocalDate endDate) {
+        return glycemieRepository.findByDateBetween(startDate,endDate);
+    }
 
     @Override
     public void Delete(Integer id) {
         glycemieRepository.deleteById(id);
     }
 }
+

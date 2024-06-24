@@ -13,8 +13,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.LocalDate;
+import java.time.temporal.WeekFields;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.Locale;
 
 @Controller
 public class Glycemies {
@@ -44,12 +47,12 @@ public class Glycemies {
         return "Dashbord";
     }
 
-    @RequestMapping("/S")
-    public String S(Model model){
-
+    @RequestMapping("/SearchW")
+    public String searchByWeek(@RequestParam("startDate") LocalDate startDate,@RequestParam("endDate") LocalDate endDate, Model model) {
+        ArrayList<Glycemie> records = glycemieService.searchByWeek(startDate,endDate);
+        model.addAttribute("Glycemies", records);
         return "Dashbord";
     }
-
     @RequestMapping("/Delete/{id}")
     public String Delete(@PathVariable("id") Integer id){
         glycemieService.Delete(id);
