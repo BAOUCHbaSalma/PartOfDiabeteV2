@@ -46,7 +46,7 @@ public class Glycemies {
     @RequestMapping("/Add")
     public String Add(@ModelAttribute Glycemie glycemie){
        glycemieService.AddGlycemie(glycemie);
-        return "redirect:/";
+        return "redirect:/Dashboard";
     }
     @RequestMapping("/Pdf")
     public String pdfGenerate(Model model){
@@ -70,6 +70,6 @@ public class Glycemies {
     @RequestMapping("/Delete/{id}")
     public String Delete(@PathVariable("id") Integer id){
         glycemieService.Delete(id);
-        return "redirect:/";
+        return "redirect:/Dashboard";
     }
 }
