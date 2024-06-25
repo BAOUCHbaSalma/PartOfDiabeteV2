@@ -1,3 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&display=swap');
+*{
+    margin:0;
+    padding: 0;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+    font-family: 'Oxygen';
+}
 #change , #back{
     background: transparent;
     color: #ED0E64;
@@ -9,4 +18,200 @@
 }
 #change:hover , #back:hover {
     transform: scale(1.1);
+}
+
+
+.top-nav{
+    background-color: #0A54B6;
+    display: flex;
+    overflow: hidden;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.top-nav a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+main .box-card {
+    display: flex;
+    flex-direction:column;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: #00B4D8;
+    border-radius: 5px;
+    height: 14rem ;
+}
+main .box-card >h1{
+    color: #03045E; font-size: 2rem;font-weight: lighter;text-align: center;
+}
+main .cards-container >a{
+    width:25%;
+}
+main .hero-text-container >h1{
+    color: #f2f2f2;
+    font-weight:normal;
+    font-size: 3rem;
+}
+main .left-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+main .left-content >h1{
+    margin-top: 3rem;
+    background-color: #03045E;
+    color: #f2f2f2;
+    font-weight: lighter;
+    font-size: 2.6rem;
+    padding: 1rem;
+    border-radius: 8px;
+}
+main .left-content >h2{
+    color: #03045E;
+    font-weight: lighter;
+    font-size: 2.3rem;
+}
+main .header-container >h1{
+
+    font-size: 4rem;
+    color: #f2f2f2;
+    font-weight: lighter;
+}
+main .form-group{
+    display: flex;
+    flex-direction:column;
+    align-items: flex-start;
+}
+main .form-group >label{
+    color: #03045E;
+    font-weight: lighter;
+    font-size: 2.2rem;
+}
+main .form-group >input{
+    border-radius: 14px;
+    border: #03045E solid 1px;
+    font-size: 2rem;
+    padding: 6px;
+    background-color: rgba(217, 217, 217, 0.42);
+    margin-top: 2rem;
+
+}
+main .form-elements{
+    display: flex;
+    justify-content: space-evenly;
+}
+main .table-range{
+    width: 100%; margin-top: 2rem;
+    border: #03045E solid 1.5px;
+    border-radius: 12px;
+
+}
+main .rn{
+    border-right: #03045E solid 2px;
+    border-bottom: #03045E solid 2px;
+    background-color: rgba(217, 217, 217, 0.42);
+    padding: 1.5rem;
+}
+main .rn >h1{
+    padding-left: 1rem;
+    font-size: 1.5rem;
+    color: #03045E;
+    font-weight: lighter;
+
+}
+main .btn-div{
+    display: flex ;
+    justify-content: flex-end;
+    margin-top: 2rem;
+}
+main .btn {
+    border-radius: 12px;
+    padding: 0.7rem;
+    background-color: #03045E;
+    color: #f2f2f2;
+    font-size: 1.6rem;
+    border:none;
+}
+main .meds-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #CAF0F8;
+    gap: 3rem;
+}
+main .med-name{
+    margin-top: 1rem;
+    padding: 1rem;
+    background-color: #00B4D8;
+    border-radius: 8px;
+}
+main .active{
+    background-color: #03045E;
+}
+main .med-name >h1{
+
+    color: #f2f2f2;
+    font-size: 1.6rem;
+    font-weight: lighter;
+    text-align: center;
+}
+main .med-details{
+    margin-top: 2rem;
+    height: 300px;
+    border-radius: 12px;
+    border: #03045E solid 2px;
+    display:grid;
+    grid-template-columns: 70% auto;
+}
+main .title-doses-med{
+    display: flex;
+    align-items: center;
+    gap:2rem;
+}
+main .title-doses-med >p{
+    background-color: #03045E;
+    color: #f2f2f2;
+    padding: 3px;
+    border-radius: 6px;
+
+}
+main .doses-count{
+    margin-top: 2rem;
+    display: flex;
+    gap: 3rem;
+    align-items: center;
+}
+main .round-boxes{
+    display: flex;
+    gap: 1rem;
+}
+main .round{
+    border-radius: 50%; width: 1rem;aspect-ratio: 1;background-color: green;
+}
+main .round.taken {
+    background-color: #03045E; /* Style for doses taken */
+}
+main .round.not-taken {
+
+    background-color: grey; /* Style for doses not taken */
+}
+main .btn-pill{
+    margin-top: 2rem;
+    border-radius: 12px;
+    padding: 0.5rem;
+    background-color: #03045E;
+    color: #f2f2f2;
+    font-size: 1.6rem;
+    border:none;
+}
+main .med-details-left{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding:2rem;
 }

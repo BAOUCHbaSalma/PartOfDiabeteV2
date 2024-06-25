@@ -2,8 +2,10 @@ package com.diabete.diabete.Controllers;
 
 import com.diabete.diabete.Models.Glycemie;
 
+import com.diabete.diabete.Models.Repas;
 import com.diabete.diabete.Services.GlycemieService;
 import com.diabete.diabete.Services.GlycemieServiceImpl;
+import com.diabete.diabete.Services.RepasService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,12 +25,24 @@ import java.util.Locale;
 public class Glycemies {
     @Autowired
     GlycemieService glycemieService;
+    @Autowired
+    private RepasService repasService;
     @RequestMapping("/")
-    public String show(Model model){
+    public String home(Model model){
+        model.addAttribute("repas", new Repas());
+        
+        return "testPage";
+    }
+    @RequestMapping("/Dashboard")
+    public String Dashboard(Model model){
+        model.addAttribute("repas", new Repas());
+        List<Repas> listrepas = repasService.getAllRepas();
+        model.addAttribute("listeRepas", listrepas);
         model.addAttribute("Glycemie",new Glycemie());
         model.addAttribute("Glycemies",glycemieService.ShowGlycemie());
         return "Dashbord";
     }
+
     @RequestMapping("/Add")
     public String Add(@ModelAttribute Glycemie glycemie){
        glycemieService.AddGlycemie(glycemie);

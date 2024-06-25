@@ -10,6 +10,31 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="/Dashboard.css">
+    <style>.card-deck {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+
+    .card {
+        width: 200px; /* Largeur fixe de chaque carte */
+        margin-bottom: 20px; /* Espacement entre les cartes */
+    }
+
+    .card-img-top {
+        max-width: 100%; /* L'image s'ajuste à la largeur de sa carte parente */
+        height: auto; /* Garantit que l'image conserve son ratio */
+        border-radius: 10px 10px 0 0; /* Arrondi les coins supérieurs de l'image */
+    }
+
+    .card-body {
+        text-align: center; /* Centre le texte dans le corps de la carte */
+    }
+
+    .card-title {
+        margin-top: 10px; /* Espacement supplémentaire au-dessus du titre */
+    }
+    </style>
 </head>
 
 <body>
@@ -142,9 +167,10 @@
             <div class="formWrapperAdd">
                 <button class="close"><ion-icon name="close-circle-outline"></ion-icon></button>
                 <form method="post" action="Add" class="mb-5">
+                    <p id="bannerMessage"></p>
                     <div class="form-group">
                         <label for="valeurGlycemie">Valeur Glycemie</label>
-                        <input type="number" class="form-control" id="valeurGlycemie" name="valeurGlycemie" placeholder="Entrez la valeur glycemie" required>
+                        <input type="number" class="form-control" id="valeurGlycemie" name="valeurGlycemie" placeholder="Entrez la valeur glycemie" step="0.1" required>
                     </div>
                     <div class="form-group">
                         <label for="Date">Date</label>
@@ -197,14 +223,87 @@
                     </table>
                 </div>
             </div>
+        <div class="container mt-5">
+
+            <div id="recommandationsRepas">
+
+            </div>
+
+
         </div>
+        </div>
+
+
     </div>
+
 
 
    <script src="/Dashboard.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    var listeRepas = /*[[${listeRepas}]]*/ [];
+    /*]]>*/
+    console.log(listeRepas);
 
+
+
+
+    let niveauGlicemiqueInput = document.getElementById('valeurGlycemie');
+    let recommandationsDiv = document.getElementById('recommandationsRepas');
+
+    niveauGlicemiqueInput.addEventListener('input', function() {
+        var niveauGlicemique = parseFloat(niveauGlicemiqueInput.value);
+        console.log(niveauGlicemique)
+        var banners = [
+            { range: [0, 1.1], message: "Niveau normal de glycémie" },
+            { range: [1.1, 1.27], message: "Niveau de glycémie légèrement élevé" },
+            { range: [1.27, 2], message: "Niveau de glycémie élevé" }
+        ];
+        var bannerMessage = "";
+
+        for (var i = 0; i < banners.length; i++) {
+            var banner = banners[i];
+            if (niveauGlicemique >= banner.range[0] && niveauGlicemique < banner.range[1]) {
+                bannerMessage = banner.message;
+                recommandationsDiv.innerHTML = "";
+                break;
+            }
+        }
+
+
+        var repasRecommandes = listeRepas.filter(repas => {
+
+            let MAX = repas.maxGl;
+            let name = repas.repasName;
+            console.log(MAX)
+            return niveauGlicemique >= MAX;
+
+        });
+
+
+
+        var recommandationsHTML = "<div class='card-deck'>";
+
+        repasRecommandes.forEach(function(repas) {
+            recommandationsHTML += "<div class='card'>";
+            recommandationsHTML += "<img src='" + repas.picture + "' class='card-img-top' style='max-width: 200px; align-self: center;'>"; // Image
+            recommandationsHTML += "<div class='card-body'><h5 class='card-title'>" + repas.repasName + "</h5></div>"; // Nom du repas
+            recommandationsHTML += "</div>";
+        });
+
+        recommandationsHTML += "</div>";
+
+
+        recommandationsDiv.innerHTML = recommandationsHTML;
+
+
+        document.getElementById('bannerMessage').textContent = bannerMessage;
+    });
+    /*]]>*/
+
+</script>
 </body>
 
 </html>

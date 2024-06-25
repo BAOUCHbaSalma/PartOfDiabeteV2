@@ -1,166 +1,108 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulaire Glycémie</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="stylesheet" href="/style.css">
+    <title>Diatrack</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+    <link rel="stylesheet" href="Style.css">
 </head>
 <body>
-
-<div class="chartsBx">
-    <h2>Graphique</h2>
-    <button id="change"><i class="bi bi-arrow-left-circle"></i></button>
-    <button id="back"><i class="bi bi-arrow-right-circle"></i></button>
-    <div class="chart"> <canvas id="chart-1"></canvas> </div>
-</div>
-
-<div class="container mt-5">
-    <h2 class="mb-4">Liste des Valeurs Glycémies</h2>
-    <table class="table table-bordered">
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>Valeur Glycemie</th>
-            <th>Date</th>
-            <th>Heure</th>
-            <th>Commentaire</th>
-            <th>ID Diabétiques</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="glycemie : ${Glycemies}">
-            <td th:text="${glycemie.idGlycemie}"></td>
-            <td class="glycemie-value" th:text="${glycemie.valeurGlycemie}" ></td>
-            <td class="glycemie-date" th:text="${glycemie.Date}"></td>
-            <td th:text="${glycemie.Heure}"></td>
-            <td th:text="${glycemie.Commentaire}"></td>
-            <td th:text="${glycemie.diabetiques.idDiabetiques}"></td>
-        </tr>
-
-        </tbody>
-    </table>
-
-</div>
-<div class="container mt-5">
-    <h2 class="mb-4">Ajouter une mesure de glycémie</h2>
-    <form method="post" action="Addtst" class="mb-5">
-        <div class="form-group">
-            <label for="valeurGlycemie">Valeur Glycemie</label>
-            <input type="number" class="form-control" id="valeurGlycemie" name="valeurGlycemie" placeholder="Entrez la valeur glycemie"  step="0.1" required>
+<header>
+    <div class="top-nav">
+        <img src="https://i.ibb.co/4VHVgGN/o.png" style="height:50px ; width: auto;"/>
+        <div class="navlinks">
+            <a class="active" href="#home">Home</a>
+            <a href="#news">About us</a>
         </div>
-        <div class="form-group">
-            <label for="Date">Date</label>
-            <input type="date" class="form-control" id="Date" name="Date" required>
-        </div>
-        <div class="form-group">
-            <label for="Heure">Heure</label>
-            <input type="time" class="form-control" id="Heure" name="Heure" required>
-        </div>
-        <div class="form-group">
-            <label for="Commentaire">Commentaire</label>
-            <input type="text" class="form-control" id="Commentaire" name="Commentaire" required>
-        </div>
-        <input type="hidden" class="form-control" id="diabetiques.idDiabetiques" name="diabetiques.idDiabetiques" value="1">
-        <button type="submit" class="btn btn-primary" id="add">Ajouter</button>
-    </form>
-</div>
-<div class="container mt-5">
-    <h2 class="mb-4">Liste des repas recommendé pour vous </h2>
-    <table class="table table-bordered">
-        <thead>
-        <tr>
-            <th>Repas</th>
-            <th>Description</th>
-            <th>recette</th>
-            <th>Valeur </th>
-            <th>Carbs</th>
-            <th>Protein</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="repas : ${listeRepas}">
-            <td th:text="${repas.repasName}"></td>
-            <td th:text="${repas.repasDescription}"></td>
-            <td th:text="${repas.recette}"></td>
-            <td th:text="${repas.glicydes}"></td>
-            <td th:text="${repas.carbs}"></td>
-            <td th:text="${repas.protein}"></td>
-        </tr>
-        </tbody>
-    </table>
-    <div id="recommandationsRepas">
+        <a href="#">
+            <div class="support" style="display: flex;align-items: center;border-radius: 6px;background-color: #03045E;padding: 6px;">
+                <span class="material-icons-sharp" >support_agent</span>
+                <div class="sub-support" style="display:flex ;flex-direction: column;align-items:flex-start; ">
+                    <p style=" font-size: 0.7rem;">Get our support 24/7</p>
+                    <h1 style=" font-size: 1.5rem;">Need help !</h1>
+                </div>
+            </div>
+        </a>
 
     </div>
-    <p id="bannerMessage"></p>
+</header>
+<main>
+    <div class="slider-container" style="display:grid;grid-template-columns: 60% 40%;">
+        <div class="left-container" style="background-color: #00B4D8 ;height:450px;display: flex;flex-direction:column; align-items: center;justify-content: center;">
+            <div class="hero-text">
+                <h1 style="color: #f2f2f2; font-weight: lighter;font-size: 3rem;"> Navigate Your Diabetes</h1>
+                <div style="display: flex; gap:1rem;align-items:baseline;">
+                    <h1 style="color: #f2f2f2; font-weight: lighter;font-size: 3rem;"> Journey with </h1>
+                    <h1 style="border-radius: 6px; background-color: #03045E;color: #f2f2f2;font-size: 3rem;padding:8px;font-weight: lighter;">Diatrack</h1>
+                </div>
+                <H2 style="font-weight: lighter;font-size: 2rem;color: #03045E;">Your Personal Health Companion!</H2>
+            </div>
+        </div>
+        <div class="right-container"style="background-color: #00B4D8; display: flex; justify-items: baseline;">
+            <img src="https://i.ibb.co/s6w8kZ8/personne-diabetique-controle-son-taux-glucose.png"style="width: 100%;height: auto;">
 
-</div>
+        </div>
 
-    <script >
+    </div>
+    <div class="body-cards-container" style="display: flex;background-color: #CAF0F8;height:550px;justify-content: space-evenly;">
+        <div class="cards-container" style="display: flex;  flex-wrap: wrap;width: 85%;height: 200px;gap: 2rem;margin-top: 2rem;justify-content: space-evenly;">
+            <a href="#" >
+                <div class="box-card" >
 
-    </script>
-    <script th:inline="javascript">
-        /*<![CDATA[*/
-        var listeRepas = /*[[${listeRepas}]]*/ [];
-        /*]]>*/
-        console.log(listeRepas);
+                    <h1>Add New <br> Test Sample</h1>
+                    <span class="material-icons-sharp" style="font-size: 60px;color:#CAF0F8; " >add_box</span>
+                </div></a>
+            <a href="#" >
+                <div class="box-card">
+                    <h1>Monitor Your Blood Sugar</h1>
+                    <span class="material-icons-sharp" style="font-size: 60px;color:#CAF0F8; " >troubleshoot</span>
+                </div></a>
+            <a href="#" >
+                <div class="box-card" >
+                    <h1>What to eat</h1>
+                    <span class="material-icons-sharp" style="font-size: 60px;color:#CAF0F8; " >restaurant</span>
+
+                </div></a>
+            <a href="#" >
+                <div class="box-card" >
+                    <h1>Medications</h1>
+                    <span class="material-icons-sharp" style="font-size: 60px;color:#CAF0F8; " >medication_liquid</span>
+                </div></a>
+            <a href="#" >
+                <div class="box-card" >
+                    <h1>Essentials</h1>
+                    <span class="material-icons-sharp" style="font-size: 60px;color:#CAF0F8; " >medical_information</span>
+                </div></a>
+            <a href="#" >
+                <div class="box-card" >
+                    <h1>Exercices</h1>
+                    <span class="material-icons-sharp" style="font-size: 60px;color:#CAF0F8; " >directions_bike</span>
+                </div></a>
+
+        </div>
+
+    </div>
+    <div class="banner-container" style="background-color:#00B4D8; height: 400px; ">
+        <div class="hero-text-container" style="padding-top: 3rem;padding-left: 4rem; ">
+            <h1>Monitor Your Blood Sugar </h1>
+        </div>
+        <div class="2nd-hero" style="display:grid; grid-template-columns: 45% auto ; ">
+            <div class="left-content" >
+                <h1>Keeping a Watchful <br> Eye on Your Health</h1>
+                <h2>it’s Diatrack's Promise</h2>
+            </div>
+            <div class="right-content" style="display: flex; justify-content: right;justify-items: baseline;height: 290px; " >
+                <img style="width: 100%;height: auto;" src="https://i.ibb.co/6FCxGRJ/image-1.png">
+            </div>
+
+        </div>
+    </div>
+</main>
+<footer>
+    <div class="footer-container" style="height: 150px; background-color: #0A54B6">
 
 
-
-        let niveauGlicemiqueInput = document.getElementById('valeurGlycemie');
-        let recommandationsDiv = document.getElementById('recommandationsRepas');
-
-        niveauGlicemiqueInput.addEventListener('input', function() {
-            var niveauGlicemique = parseFloat(niveauGlicemiqueInput.value);
-
-            var banners = [
-                { range: [0, 1.1], message: "Niveau normal de glycémie" },
-                { range: [1.1, 1.27], message: "Niveau de glycémie légèrement élevé" },
-                { range: [1.27, 2], message: "Niveau de glycémie élevé" }
-            ];
-            var bannerMessage = "";
-
-            for (var i = 0; i < banners.length; i++) {
-                var banner = banners[i];
-                if (niveauGlicemique >= banner.range[0] && niveauGlicemique < banner.range[1]) {
-                    bannerMessage = banner.message;
-                    recommandationsDiv.innerHTML = "";
-                    break;
-                }
-            }
-
-
-            var repasRecommandes = listeRepas.filter(repas => {
-                return niveauGlicemique >= repas.maxGl;
-            });
-
-
-            var recommandationsHTML = "<h3>Repas recommandés :</h3><ul>";
-            repasRecommandes.forEach(function(repas) {
-                recommandationsHTML += "<li>" + repas.repasName + "</li>";
-            });
-            recommandationsHTML += "</ul>";
-
-
-            recommandationsDiv.innerHTML = recommandationsHTML;
-
-
-            document.getElementById('bannerMessage').textContent = bannerMessage;
-        });
-        /*]]>*/
-
-    </script>
-<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-<script src="/ScriptHome.js">
-</script>
-
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    </div>
+</footer>
 </body>
 </html>

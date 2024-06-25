@@ -46,6 +46,9 @@ public class Repas {
     @Column
     private Double maxGl;
 
+    @Column
+    private String Picture;
+
     @Override
     public String toString() {
         return "Repas{" +
