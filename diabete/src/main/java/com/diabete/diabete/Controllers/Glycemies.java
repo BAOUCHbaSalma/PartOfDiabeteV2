@@ -30,7 +30,7 @@ public class Glycemies {
     @RequestMapping("/")
     public String home(Model model){
         model.addAttribute("repas", new Repas());
-        
+
         return "testPage";
     }
     @RequestMapping("/Dashboard")
