@@ -37,6 +37,14 @@
             text-align: center;
         }
 
+        .btn{
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+        }
         .btn-export-pdf {
             background-color: #00ADEF;
             color: #fff;
@@ -84,7 +92,9 @@
 
 
     </div>
-    <button class="btn-export-pdf" onclick="generatePDF()">Exporter en PDF</button>
+    <div class="btn">
+        <button class="btn-export-pdf" onclick="generatePDF()">Exporter en PDF</button>
+    </div>
 
 
 

@@ -708,3 +708,17 @@ body {
     outline: none;
     border-radius: 12px;
 }
+.ajouterBtn{
+    margin-right: 25px;
+    border: 1px solid #ED0E64;
+    color: #ED0E64;
+    cursor: pointer;
+    transition: .5s;
+    text-decoration: none;
+    padding: 7px 14px;
+    border-radius: 7px;
+}
+.ajouterBtn:hover{
+    background: rgba(237, 14, 100, 0.38);
+    color: white;
+}
